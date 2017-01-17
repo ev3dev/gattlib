@@ -9,6 +9,8 @@
 #define MAX_WAIT_FOR_PACKET 15 // seconds
 
 #include <boost/python/list.hpp>
+#include <boost/python/tuple.hpp>
+#include <boost/python/dict.hpp>
 #include <string>
 #include <stdint.h>
 #include <glib.h>
@@ -36,6 +38,7 @@ public:
 	virtual ~GATTResponse() {};
 
 	virtual void on_response(const std::string data);
+	virtual void on_response(boost::python::object data);
 	boost::python::list received();
 	bool wait(uint16_t timeout);
 	void notify(uint8_t status);
@@ -50,13 +53,16 @@ void connect_cb(GIOChannel* channel, GError* err, gpointer user_data);
 
 class GATTRequester {
 public:
-	GATTRequester(std::string address, bool do_connect=true);
+	GATTRequester(std::string address,
+			bool do_connect=true, std::string device="hci0");
 	virtual ~GATTRequester();
 
 	virtual void on_notification(const uint16_t handle, const std::string data);
 	virtual void on_indication(const uint16_t handle, const std::string data);
 
-	void connect(bool wait=false);
+	void connect(bool wait=false, std::string channel_type="public",
+			std::string security_level="low", int psm=0, int mtu=0);
+	static boost::python::object connect_kwarg(boost::python::tuple args, boost::python::dict kwargs);
 	bool is_connected();
 	void disconnect();
 	void read_by_handle_async(uint16_t handle, GATTResponse* response);
@@ -70,14 +76,20 @@ public:
 	friend gboolean disconnect_cb(GIOChannel* channel, GIOCondition cond, gpointer userp);
 	friend void events_handler(const uint8_t* data, uint16_t size, gpointer userp);
 
+	boost::python::list discover_primary();
+	void discover_primary_async(GATTResponse* response);
+	boost::python::list discover_characteristics(int start = 0x0001, int end = 0xffff, std::string uuid = "");
+	void discover_characteristics_async(GATTResponse* response, int start = 0x0001, int end = 0xffff, std::string uuid = "");
 private:
 	void check_channel();
+	void check_connected();
 
-	enum State {
-		STATE_DISCONNECTED,
-		STATE_CONNECTING,
-		STATE_CONNECTED,
-	} _state;
+    enum State {
+        STATE_DISCONNECTED,
+        STATE_CONNECTING,
+        STATE_CONNECTED,
+        STATE_ERROR_CONNECTING
+    } _state;
 
 	std::string _device;
 	std::string _address;
