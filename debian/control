@@ -1,5 +1,6 @@
 Source: gattlib
-Maintainer: Oscar Aceña Herrera <oscaracena@gmail.com>
+Maintainer: David Lechner <david@lechnology.com>
+XSBC-Original-Maintainer: Oscar Aceña Herrera <oscaracena@gmail.com>
 Section: python
 Priority: optional
 Build-Depends: python-all-dev,

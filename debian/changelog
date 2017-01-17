@@ -1,3 +1,9 @@
+gattlib (0.20150131-1ev3dev1) stable; urgency=medium
+
+  * ev3dev takeover
+
+ -- David Lechner <david@lechnology.com>  Mon, 16 Jan 2017 20:49:48 -0600
+
 gattlib (0.20150131-1) unstable; urgency=low
 
   * New release; fix threading issues, added notifications on python
