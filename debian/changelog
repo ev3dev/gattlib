@@ -1,3 +1,10 @@
+gattlib (0.20150805-1ev3dev1) stable; urgency=medium
+
+  * Add debian/watch
+  * Imported Upstream version 0.20150805
+
+ -- David Lechner <david@lechnology.com>  Tue, 17 Jan 2017 12:16:49 -0600
+
 gattlib (0.20150131-1ev3dev1) stable; urgency=medium
 
   * ev3dev takeover
