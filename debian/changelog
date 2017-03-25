@@ -1,3 +1,9 @@
+gattlib (0.20150805-1ev3dev2) testing; urgency=medium
+
+  * Target stretch
+
+ -- David Lechner <david@lechnology.com>  Fri, 24 Mar 2017 21:14:28 -0500
+
 gattlib (0.20150805-1ev3dev1) stable; urgency=medium
 
   * Add debian/watch
