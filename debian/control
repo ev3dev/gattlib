@@ -7,14 +7,14 @@ Build-Depends: python-all-dev,
 	       python-setuptools,
 	       python3-all-dev,
 	       python3-setuptools,
-	       debhelper (>= 9),
+	       debhelper (>= 10),
 	       dh-python,
 	       pkg-config,
 	       libglib2.0-dev,
-	       libboost-python1.55-dev,
-	       libboost-thread1.55-dev,
+	       libboost-python-dev,
+	       libboost-thread-dev,
 	       libbluetooth-dev (>= 4.101)
-Standards-Version: 3.9.6
+Standards-Version: 3.9.8
 Homepage: https://bitbucket.org/OscarAcena/pygattlib
 X-Python-Version: >= 2.6
 X-Python3-Version: >= 3.2

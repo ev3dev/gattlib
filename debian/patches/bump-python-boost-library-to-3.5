@@ -1,0 +1,22 @@
+--- gattlib-0.20150805.orig/setup.py
++++ gattlib-0.20150805/setup.py
+@@ -19,7 +19,7 @@ if sys.platform.startswith('linux'):
+     glib_libs = [x.strip() for x in glib_libs if x]
+ 
+     if sys.version_info.major == 3:
+-        boost_libs = ["boost_python-py34"]
++        boost_libs = ["boost_python-py35"]
+     else:
+         boost_libs = ["boost_python"]
+     extension_modules = [
+--- gattlib-0.20150805.orig/src/Makefile
++++ gattlib-0.20150805/src/Makefile
+@@ -9,7 +9,7 @@ OBJECTS  = att.o crypto.o uuid.o gatt.o
+ 
+ ifeq ($(PYTHON_VER),3)
+   PYTHON_CONFIG = python3-config
+-  BOOST_PYTHON  = boost_python-py34
++  BOOST_PYTHON  = boost_python-py35
+ else
+   PYTHON_CONFIG = python-config
+   BOOST_PYTHON  = boost_python
